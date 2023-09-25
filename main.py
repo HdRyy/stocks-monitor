@@ -4,8 +4,7 @@ import mplfinance as mpf
 import api
 
 function = "TIME_SERIES_DAILY"
-symbol = "PETR4.SA"
-url = f"https://www.alphavantage.co/query?function={function}&symbol={symbol}&apikey={api.key}"
+url = f"https://www.alphavantage.co/query?function={function}&symbol={api.symbol}&apikey={api.key}"
 json = requests.get(url).json()
 
 data = {
@@ -37,4 +36,4 @@ df = df.set_index('date')
 df = df.iloc[::-1]
 
 mpf.plot(df, type="candle", mav=(20), volume=True,
-         style="yahoo", title=f"{symbol}")
+         style="yahoo", title=f"{api.symbol}")
